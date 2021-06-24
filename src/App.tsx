@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App() {
+import DashboardLayout from "./shared/dashboardLayout";
+import Dashboard from "./pages/dashboard";
+import Reports from "./pages/reports";
+import Projects from "./pages/projects";
+import Employees from "./pages/employees";
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <DashboardLayout>
+        <Switch>
+          <Route path="/" exact>
+            <Dashboard />
+          </Route>
+          <Route path="/dashboard" exact>
+            <Dashboard />
+          </Route>
+          <Route path="/reports">
+            <Reports />
+          </Route>
+          <Route path="/projects">
+            <Projects />
+          </Route>
+          <Route path="/employees">
+            <Employees />
+          </Route>
+        </Switch>
+      </DashboardLayout>
+    </Router>
   );
 }
-
-export default App;
